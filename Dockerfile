@@ -19,5 +19,6 @@ RUN git clone https://github.com/capnproto/capnproto-java.git && \
     cd .. && \
     rm -rf capnproto-java
 
+RUN rustup component add rustfmt
 
 
