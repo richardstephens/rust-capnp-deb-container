@@ -1,4 +1,9 @@
-FROM rust:1.86.0-bullseye
+FROM rust:1.88.0-bookworm
+
+RUN apt-get update && \
+    apt-get install -y libssl-dev build-essential pkg-config autoconf libtool \
+        libudev-dev zlib1g zlib1g-dev libtirpc3 libtirpc-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://capnproto.org/capnproto-c++-0.10.4.tar.gz && \
     echo "981e7ef6dbe3ac745907e55a78870fbb491c5d23abd4ebc04e20ec235af4458c  capnproto-c++-0.10.4.tar.gz" | sha256sum -c
@@ -20,5 +25,4 @@ RUN git clone https://github.com/capnproto/capnproto-java.git && \
     rm -rf capnproto-java
 
 RUN rustup component add rustfmt
-
 
