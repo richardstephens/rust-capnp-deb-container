@@ -25,4 +25,5 @@ RUN git clone https://github.com/capnproto/capnproto-java.git && \
     rm -rf capnproto-java
 
 RUN rustup component add rustfmt
+RUN rustup component add clippy
 
