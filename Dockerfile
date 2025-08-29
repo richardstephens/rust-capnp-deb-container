@@ -1,4 +1,4 @@
-FROM rust:1.88.0-bookworm
+FROM rust:1.89.0-trixie
 
 RUN apt-get update && \
     apt-get install -y libssl-dev build-essential pkg-config autoconf libtool \
