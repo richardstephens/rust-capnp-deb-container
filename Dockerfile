@@ -1,8 +1,10 @@
 FROM rust:1.89.0-trixie
 
-RUN apt-get update && \
+RUN sed -i -e's/ main/ main contrib/g' /etc/apt/sources.list.d/debian.sources && \
+    apt-get update && \
     apt-get install -y libssl-dev build-essential pkg-config autoconf libtool \
-        libudev-dev zlib1g zlib1g-dev libtirpc3 libtirpc-dev && \
+        libudev-dev zlib1g zlib1g-dev libtirpc3 libtirpc-dev \
+        libzfslinux-dev golang clang-19 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://capnproto.org/capnproto-c++-0.10.4.tar.gz && \
