@@ -1,4 +1,4 @@
-FROM rust:1.89.0-trixie
+FROM rust:1.92.0-trixie
 
 RUN sed -i -e's/ main/ main contrib/g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update && \
@@ -7,20 +7,20 @@ RUN sed -i -e's/ main/ main contrib/g' /etc/apt/sources.list.d/debian.sources &&
         libzfslinux-dev golang clang-19 libvirt-dev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN curl -O https://capnproto.org/capnproto-c++-0.10.4.tar.gz && \
-    echo "981e7ef6dbe3ac745907e55a78870fbb491c5d23abd4ebc04e20ec235af4458c  capnproto-c++-0.10.4.tar.gz" | sha256sum -c
+RUN curl -O https://capnproto.org/capnproto-c++-1.2.0.tar.gz && \
+    echo "ed00e44ecbbda5186bc78a41ba64a8dc4a861b5f8d4e822959b0144ae6fd42ef  capnproto-c++-1.2.0.tar.gz" | sha256sum -c
 
-RUN tar zxvf capnproto-c++-0.10.4.tar.gz && \
-    cd capnproto-c++-0.10.4 && \
+RUN tar zxvf capnproto-c++-1.2.0.tar.gz && \
+    cd capnproto-c++-1.2.0 && \
     ./configure && \
     make -j8 check && \
     make install && \
     cd .. && \
-    rm -rf capnproto-c++-0.10.4
+    rm -rf capnproto-c++-1.2.0
 
 RUN git clone https://github.com/capnproto/capnproto-java.git && \
     cd capnproto-java && \
-    git checkout 0fd8452dab167618e5074dfa900afdec7553f400 && \
+    git checkout d1c239e5af24bb28e2e41b5ee77107e3317e4621 && \
     make && \
     make install && \
     cd .. && \
