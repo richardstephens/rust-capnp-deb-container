@@ -1,4 +1,4 @@
-FROM rust:1.92.0-trixie
+FROM rust:1.97.1-trixie
 
 RUN sed -i -e's/ main/ main contrib/g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update && \
