@@ -1,5 +1,8 @@
 FROM rust:1.97.1-trixie
 
+RUN rustup component add rustfmt
+RUN rustup component add clippy
+
 RUN sed -i -e's/ main/ main contrib/g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update && \
     apt-get install -y libssl-dev build-essential pkg-config autoconf libtool \
@@ -28,6 +31,4 @@ RUN git clone https://github.com/capnproto/capnproto-java.git && \
     cd .. && \
     rm -rf capnproto-java
 
-RUN rustup component add rustfmt
-RUN rustup component add clippy
 
